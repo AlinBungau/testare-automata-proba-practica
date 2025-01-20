@@ -1,0 +1,1 @@
+# testare-automata-proba-practica
