@@ -18,9 +18,9 @@ public class Testing {
         log.info("Browser opened");
         WebDriver driver = manager.getDriver();
         log.warn("This is a warning message");
-        driver.get("https://www.youtube.com");
+        driver.get("https://www.classicfootballshirts.co.uk");
         String url = driver.getCurrentUrl();
-        assertTrue(url.contains("youtube"));
+        assertTrue(url.contains("classicfootballshirts"));
     }
 
 
