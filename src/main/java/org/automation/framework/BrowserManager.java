@@ -11,7 +11,7 @@ public class BrowserManager {
         driver = new ChromeDriver();
     }
 
-    public WebDriver getDriver() {
+    public static WebDriver getDriver() {
         return driver;
     }
 
