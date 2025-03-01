@@ -16,11 +16,10 @@ public class HomePage {
     BrowserManager manager = new BrowserManager();
     SeleniumActions actions = new SeleniumActions(manager);
 
-    private final static By HOME_PAGE_BANNER = By.xpath("//div[@class='blocks-promo']//img");
-    private final static By HOME_PAGE_PRODUCTS = By.xpath("//li[@class='product-item']");
-    private final static By SEARCH_FIELD = By.xpath("//input[@name='q']");
-    private final static By ELEMENTS_FROM_SEARCH = By.xpath("//*[@id=\"search_autocomplete\"]//li//span[@class='qs-option-name']");
-    private final static By SEARCH_RESULTS = By.xpath("//ol[@class='products list items product-items']//li//div//a[@class='product-item-link']");
+
+    private final static By SEARCH_FIELD = By.xpath("(//input[@id='search'])[2]");
+    private final static By ELEMENTS_FROM_SEARCH = By.xpath("(//span[@class='text-sm'])[1]");
+    private final static By SEARCH_RESULTS = By.xpath("//div[@class='relative products products-grid mode-grid products-grid']//div[@class='product-item lg:px-[10px] lg:pt-[15px] pb-[10px] min-h-[175px]']");
 
     public void openHomePage() {
         log.info("Open home page");
@@ -29,31 +28,12 @@ public class HomePage {
         manager.getDriver().manage().window().maximize();
     }
 
-    public String homePageTitle() {
-        log.info("Get home page title");
-        return manager.getDriver().getTitle();
-    }
-
-    public boolean isBannerDisplayed() {
-        log.info("Check if banner is displayed");
-        return actions.isElementDisplayed(HOME_PAGE_BANNER);
-    }
-
-    public boolean isBannerEnabled() {
-        log.info("Check if banner is enabled");
-        return actions.isElementEnabled(HOME_PAGE_BANNER);
-    }
-
-    public List<WebElement> productsDisplayed() {
-        log.info("Check if products are displayed");
-        return actions.getElements(HOME_PAGE_PRODUCTS);
-    }
 
     public void searchElementFromDropdown(String searchElement) {
         log.info("Search for element: {}", searchElement);
         actions.clickElement(SEARCH_FIELD);
         actions.sendKeys(SEARCH_FIELD, searchElement);
-        actions.waitElementToBeClickable(By.xpath("(//*[@id=\"search_autocomplete\"]//li)[2]"), 5);
+        actions.waitElementToBeClickable(By.xpath("(//span[@class='text-sm'])[1]"), 20);
         List<WebElement> searchSuggestions = actions.getElements(ELEMENTS_FROM_SEARCH);
         for (var item : searchSuggestions) {
             if (item.getText().toLowerCase(Locale.ROOT).equals(searchElement.toLowerCase(Locale.ROOT))) {
