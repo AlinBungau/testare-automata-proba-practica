@@ -24,13 +24,27 @@ public class SearchTests {
         homePage.openHomePage();
     }
 
+    @Tag("homeproducts")
     @Test
-    @DisplayName("Search products with multiple results")
-    public void searchProductsWithMultipleResults() {
-        homePage.searchElementFromDropdown("AC Milan");
+    @DisplayName("Validate products test")
+    public void validateProducts() {
+        log.info("Validate products");
+        homePage.searchElementFromDropdown("Deportivo Cali");
+        List<WebElement> listOfProducts = homePage.getSearchResults ();
+        assertNotNull(listOfProducts, "List of products is null");
+        assertEquals(5, listOfProducts.size(), "Number of products is: " + listOfProducts.size());
+        assertTrue(listOfProducts.get(0).getText().contains("Cali"));
+    }
+
+
+    @DisplayName("Search dropdown menu test")
+    @ParameterizedTest
+    @ValueSource(strings = {"AC Milan", "Barcelona", "Jacket"})
+    public void searchTest(String testData) {
+        homePage.searchElementFromDropdown(testData);
         List<WebElement> results = homePage.getSearchResults();
         for (WebElement item : results) {
-            assertTrue(item.getText().contains("AC Milan"), "Items found" + item.getText());
+            assertTrue(item.getText().contains(testData), "I found item: " + item.getText());
         }
     }
 
