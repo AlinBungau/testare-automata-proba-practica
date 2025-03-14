@@ -1,10 +1,9 @@
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.automation.framework.BrowserManager;
 import org.automation.pageobjects.CreateAccountPage;
 import org.automation.pageobjects.HomePage;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.List;
 
@@ -18,6 +17,7 @@ public class CreateAccountTests {
         homePage.openHomePage();
     }
 
+    @Severity(SeverityLevel.MINOR)
     @Test
     @DisplayName("Validate create account fields test")
     public void validateCreateAccountFields() {

@@ -12,12 +12,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
+import static org.automation.framework.BrowserManager.driver;
+
 public class SeleniumActions {
 
     private final BrowserManager browserManager;
 
     public SeleniumActions(BrowserManager browserManager) {
         this.browserManager = browserManager;
+    }
+
+
+    public WebElement getElement(By locator) {
+        return driver.findElement(locator);
     }
 
     public boolean isElementDisplayed(By locator) {
@@ -69,4 +76,5 @@ public class SeleniumActions {
         Wait<WebDriver> wait = new WebDriverWait(browserManager.getDriver(), Duration.ofSeconds(timeToWait));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
+
 }

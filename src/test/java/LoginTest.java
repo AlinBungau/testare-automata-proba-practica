@@ -1,9 +1,12 @@
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.automation.framework.BrowserManager;
 import org.automation.pageobjects.LoginPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,6 +21,7 @@ public class LoginTest {
         login.openLoginPage();
     }
 
+    @Severity(SeverityLevel.BLOCKER)
     @Test
        public void login() {
         login.loginPage();

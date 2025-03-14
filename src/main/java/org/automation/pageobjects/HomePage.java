@@ -16,11 +16,12 @@ public class HomePage {
     BrowserManager manager = new BrowserManager();
     SeleniumActions actions = new SeleniumActions(manager);
 
-
     private final static By SEARCH_FIELD = By.xpath("(//input[@id='search'])[2]");
     private final static By HOME_PAGE_PRODUCTS = By.xpath("//div[@class='relative products products-grid mode-grid products-grid']//div[@class='product-item lg:px-[10px] lg:pt-[15px] pb-[10px] min-h-[175px]']");
     private final static By ELEMENTS_FROM_SEARCH = By.xpath("(//span[@class='text-sm'])[1]");
     private final static By SEARCH_RESULTS = By.xpath("//div[@class='relative products products-grid mode-grid products-grid']//div[@class='product-item lg:px-[10px] lg:pt-[15px] pb-[10px] min-h-[175px]']");
+    private final static By FINAL_PRICE = By.xpath("(//span[@class='price pr-[5px]'])[2]");
+    private final static By CART_PRICE = By.xpath("//span[@class='value text-right font-bold']");
 
     public void openHomePage() {
         log.info("Open home page");
@@ -33,7 +34,6 @@ public class HomePage {
         log.info("Check if products are displayed");
         return actions.getElements(HOME_PAGE_PRODUCTS);
     }
-
 
     public void searchElementFromDropdown(String searchElement) {
         log.info("Search for element: {}", searchElement);
@@ -52,4 +52,24 @@ public class HomePage {
     public List<WebElement> getSearchResults() {
         return actions.getElements(SEARCH_RESULTS);
     }
+
+    public void selectSize(String size) {
+        By SIZE = By.xpath("//span[@x-html='getSwatchText(797, item.id)' and text()='" + size + "']");
+        actions.waitElementToBeClickable(SIZE, 10);
+        actions.clickElement(SIZE);
+        actions.clickElement(By.xpath("//div[@x-data='initAddToCartButton()']"));
+
+    }
+
+    public String getFinalPrice() {
+        WebElement priceElement = actions.getElement(FINAL_PRICE);
+        return priceElement.getText();
+    }
+    public String getCart() {
+        actions.waitElementToBeClickable(By.xpath("//a[@id='menu-cart-icon']//*[name()='svg']"), 25);
+        actions.waitFluentElementVisible(By.xpath("//a[@class='inline-flex btn btn-primary']"), 25);
+        actions.clickElement(By.xpath("//a[@class='inline-flex btn btn-primary']"));
+        return actions.getElementText(CART_PRICE);
+    }
+
 }
