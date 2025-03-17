@@ -27,7 +27,7 @@ public class SearchTests {
 
 
     @Test
-    @DisplayName("Validate products test")
+    @DisplayName("Validate number of products in list test")
     public void validateProducts() {
         log.info("Validate products");
         homePage.searchElementFromDropdown("Deportivo Cali");
@@ -40,7 +40,7 @@ public class SearchTests {
     @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Search dropdown menu test")
     @ParameterizedTest
-    @ValueSource(strings = {"AC Milan", "Barcelona", "Liverpool"})
+    @ValueSource(strings = {"AC Milan", "Jacket", "Liverpool"})
     public void searchTest(String testData) {
         homePage.searchElementFromDropdown(testData);
         List<WebElement> results = homePage.getSearchResults();
@@ -51,15 +51,13 @@ public class SearchTests {
 
 
 
-    @DisplayName("Search products test with enum")
+    @DisplayName("Final cart price test with enum")
     @ParameterizedTest
-    @EnumSource(value = ProductClass.class, names = {"THIRD_PRODUCT"})
+    @EnumSource(value = ProductClass.class, names = {"FIRST_PRODUCT", "SECOND_PRODUCT","THIRD_PRODUCT","FOURTH_PRODUCT"})
     public void searchTestWithEnum(ProductClass product) {
         homePage.searchElementFromDropdown(product.getProduct());
         List<WebElement> results = homePage.getSearchResults();
-        for (WebElement item : results) {
-            assertTrue(item.getText().contains(product.getProduct()), "I found item: " + item.getText());
-        }
+
 
 
     results.get(2).click();

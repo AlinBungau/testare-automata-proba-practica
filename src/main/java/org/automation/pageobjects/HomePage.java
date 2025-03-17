@@ -66,8 +66,8 @@ public class HomePage {
         return priceElement.getText();
     }
     public String getCart() {
-        actions.waitElementToBeClickable(By.xpath("//a[@id='menu-cart-icon']//*[name()='svg']"), 25);
-        actions.waitFluentElementVisible(By.xpath("//a[@class='inline-flex btn btn-primary']"), 25);
+        actions.waitElementToBeClickable(By.xpath("//a[@id='menu-cart-icon']//*[name()='svg']"), 20);
+        actions.waitFluentElementVisible(By.xpath("//a[@class='inline-flex btn btn-primary']"), 20);
         actions.clickElement(By.xpath("//a[@class='inline-flex btn btn-primary']"));
         return actions.getElementText(CART_PRICE);
     }

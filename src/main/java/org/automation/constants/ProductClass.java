@@ -2,11 +2,10 @@ package org.automation.constants;
 
 public enum ProductClass {
 
-    FIRST_PRODUCT("AC Milan"),
-    SECOND_PRODUCT("Socks"),
-    THIRD_PRODUCT("Jacket"),
-    FOURTH_PRODUCT("Shirt"),
-    FIFTH_PRODUCT("Jacket");
+    FIRST_PRODUCT("Puma Hoodie"),
+    SECOND_PRODUCT("Atalanta Joma"),
+    THIRD_PRODUCT("Real Madrid Adidas"),
+    FOURTH_PRODUCT("Germany Shirt");
 
     private final String product;
 

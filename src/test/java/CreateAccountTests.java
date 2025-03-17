@@ -7,6 +7,8 @@ import org.junit.jupiter.api.*;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class CreateAccountTests {
 
     HomePage homePage = new HomePage();
@@ -24,6 +26,8 @@ public class CreateAccountTests {
         createAccountPage.clickMyAccountButton();
         createAccountPage.clickCreateAccountButton();
         List<String> labelsText = createAccountPage.getAccountLabels();
+        List<String> expectedLabels = List.of("Personal Information", "First Name", "Sign Up for Newsletter", "Tax/VAT Number", "Last Name", "Email", "Password", "Allow remote shopping assistance", "Confirm Password","Password Strength: No Password", "Sign-in Information");
+        expectedLabels.forEach(label -> assertTrue(labelsText.contains(label), "Label '" + label + "' should be present"));
     }
 
 

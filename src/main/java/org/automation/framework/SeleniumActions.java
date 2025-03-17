@@ -27,13 +27,7 @@ public class SeleniumActions {
         return driver.findElement(locator);
     }
 
-    public boolean isElementDisplayed(By locator) {
-        return browserManager.getDriver().findElement(locator).isDisplayed();
-    }
 
-    public boolean isElementEnabled(By locator) {
-        return browserManager.getDriver().findElement(locator).isEnabled();
-    }
 
     public List<WebElement> getElements(By locator) {
         return browserManager.getDriver().findElements(locator);
@@ -56,13 +50,7 @@ public class SeleniumActions {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public void waitFluentElementClickable(By locator, int timeOut) {
-        Wait<WebDriver> wait = new FluentWait<>(browserManager.getDriver())
-                .withTimeout(Duration.ofSeconds(timeOut))
-                .pollingEvery(Duration.ofMillis(300))
-                .ignoring(ElementNotInteractableException.class);
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
-    }
+
 
     public void waitFluentElementVisible(By locator, int timeOut) {
         Wait<WebDriver> wait = new FluentWait<>(browserManager.getDriver())
@@ -72,9 +60,6 @@ public class SeleniumActions {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
-    public void waitToSpinnerToHide(By locator, int timeToWait) {
-        Wait<WebDriver> wait = new WebDriverWait(browserManager.getDriver(), Duration.ofSeconds(timeToWait));
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-    }
+
 
 }
